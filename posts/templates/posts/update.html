@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizando post</title>
+    <style>
+        .error {
+            background-color: red;
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    
+    Updating post
+    
+    <hr>
+
+        <!-- Mensajes de validacion personalizados -->
+        {{ form.non_field_errors }}
+    
+        <form action="" method="post">
+            {% csrf_token %}
+    
+            {% for field in form %}
+                <div>
+                    {{ field.label_tag }}
+                    {{ field }}
+                    <br>
+                    {% if field.help_text %}
+                        <span style="color: blue;">
+                            {{ field.help_text }}
+                        </span>
+                    {% endif %}
+                    <br>
+                    {% for error in field.errors %}
+                        <span class="error">
+                            {{ error }}
+                        </span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div>
+                {% include "posts/tags_selection.html" %}
+            </div>
+    
+            <input type="submit" value="Guardar">
+        </form>
+</body>
+</html>

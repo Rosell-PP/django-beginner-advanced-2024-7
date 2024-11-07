@@ -1,0 +1,4 @@
+{% comment %} Las etiquetas opcionales {% endcomment %}
+{% for tag in tags %}
+    <input type="checkbox" name="tags" value="{{tag.name}}">{{tag.name}}</input>
+{% endfor %}

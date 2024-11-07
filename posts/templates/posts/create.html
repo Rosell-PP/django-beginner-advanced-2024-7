@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo post</title>
+    <style>
+        .error {
+            background-color: red;
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    
+    Nuevo post
+    
+    <hr>
+        <!-- Mensajes de validacion personalizados -->
+        {{ form.non_field_errors }}
+    
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% comment %} Los campos del formulario {% endcomment %}
+            {% for field in form %}
+                <div>
+                    {{ field.label_tag }}
+                    {{ field }}
+                    <br>
+                    {% if field.help_text %}
+                        <span style="color: blue;">
+                            {{ field.help_text }}
+                        </span>
+                    {% endif %}
+                    <br>
+                    {% for error in field.errors %}
+                        <span class="error">
+                            {{ error }}
+                        </span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% include "posts/tags_selection.html" %}
+    
+            <input type="submit" value="Guardar">
+        </form>
+</body>
+</html>

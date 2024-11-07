@@ -1,0 +1,34 @@
+{% extends "layouts/base.html" %}
+
+{% block main %}
+
+    <a href="{% url 'posts-home' %}">Home</a>
+
+    Detalles del post
+
+    <hr>
+        
+        {% include "posts/post_info.html" %}
+
+    <hr>
+        Comentarios {{ post.comment_set.all | length }}
+    <hr>
+
+    {% for comment in post.comment_set.all  %}
+        <p style="color: grey; font-size: 11px;">
+            {{ comment.comment }}
+        </p>
+    {% endfor %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ commentForm }}
+        <button type="submit">Save</button>
+    </form>
+
+
+
+  
+{% endblock main %}
+
+    

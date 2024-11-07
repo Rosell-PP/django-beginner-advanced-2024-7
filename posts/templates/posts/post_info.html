@@ -1,0 +1,10 @@
+{% if post.post_image %}
+    Post Image: <img src="{{post.post_image.url}}" width="100"> <br>
+{% endif %}
+Post title:
+    <a href="{% url 'post-update' post.id %}">
+        {{ post.post_title}}
+    <a/>
+<br>
+Post content: {{ post.post_content }} <br>
+Published date: {{ post.published_date|date:"M j, Y" }} <br>

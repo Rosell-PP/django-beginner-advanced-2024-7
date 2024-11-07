@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        .btn-edit {
+            padding: 2px 15px;
+            background-color: orangered;
+            border: 1px solid;
+            color: white;
+        }
+        .btn-delete {
+            padding: 2px 15px;
+            background-color: red;
+            border: 1px solid;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    Todo List
+
+    <hr>
+
+    {{ extra_data }}
+
+    <ul>
+        {% for todo in object_list %}
+            <li>
+                <div>
+                    <a href="{% url 'todos-details' todo.id %}">
+                        {{todo}}
+                    </a>
+                </div>
+                <div>
+                    <a class="btn-edit" href="{% url 'todos-update' todo.id %}">Edit</a>
+                    <a class="btn-delete" href="{% url 'todos-delete' todo.id %}">Delete</a>
+                </div>
+
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
